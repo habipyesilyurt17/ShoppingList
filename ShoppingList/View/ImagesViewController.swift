@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ImagesViewController.swift
 //  ShoppingList
 //
 //  Created by habip on 2.09.2022.
@@ -7,13 +7,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ImagesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        title = "Images"
+        view.backgroundColor = .systemGreen
     }
 
-
 }
-
