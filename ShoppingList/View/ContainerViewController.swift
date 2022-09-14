@@ -16,9 +16,11 @@ class ContainerViewController: UIViewController {
     private var menuState: MenuState = .closed
     
     let menuVC = MenuViewController()
-    let shoppingListVC = ShoppingListViewController()
+    let homeVC = HomeViewController()
     var navVC: UINavigationController?
-    lazy var imageVC = ImagesViewController()
+    
+    lazy var shoppingListVC  = ShoppingListViewController()
+    lazy var imageVC    = ImagesViewController()
     lazy var categoryVC = CategoriesViewController()
     
 
@@ -36,8 +38,8 @@ class ContainerViewController: UIViewController {
         menuVC.didMove(toParent: self)
         
         // Home
-        shoppingListVC.delegate = self
-        let navVC = UINavigationController(rootViewController: shoppingListVC)
+        homeVC.delegate = self
+        let navVC = UINavigationController(rootViewController: homeVC)
         addChild(navVC)
         view.addSubview(navVC.view)
         navVC.didMove(toParent: self)
@@ -46,7 +48,7 @@ class ContainerViewController: UIViewController {
     
 }
 
-extension ContainerViewController: ShoppingListViewControllerDelegate {
+extension ContainerViewController: HomeViewControllerDelegate {
     func didTopMenuButton() {
         toggleMenu(completion: nil)
     }
@@ -55,7 +57,7 @@ extension ContainerViewController: ShoppingListViewControllerDelegate {
         switch menuState {
         case .closed:
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
-                self.navVC?.view.frame.origin.x = self.shoppingListVC.view.frame.size.width - 100
+                self.navVC?.view.frame.origin.x = self.homeVC.view.frame.size.width - 100
             } completion: { [weak self] done in
                 if done {
                     self?.menuState = .opened
@@ -77,41 +79,46 @@ extension ContainerViewController: ShoppingListViewControllerDelegate {
     }
 }
 
+
 extension ContainerViewController: MenuViewControllerDelegate {
+    
     func didSelect(menuItem: MenuViewController.MenuOptions) {
         toggleMenu { [weak self] in
             switch menuItem {
             case .home:
                 self?.resetToHome()
-            case .categories:
-                self?.addCategories()
+            case .shoppingList:
+                self?.addShoppingList()
              case .images:
                 self?.addImage()
             }
         }
     }
     
-    func addCategories() {
-        shoppingListVC.addChild(categoryVC)
-        shoppingListVC.view.addSubview(categoryVC.view)
-        categoryVC.view.frame = view.frame
-        categoryVC.didMove(toParent: shoppingListVC)
-        shoppingListVC.title = categoryVC.title
+    func addShoppingList() {
+        homeVC.addChild(shoppingListVC)
+        homeVC.view.addSubview(shoppingListVC.view)
+        shoppingListVC.view.frame = view.frame
+        shoppingListVC.didMove(toParent: homeVC)
+        shoppingListVC.shoppingListViewIsLoad()
+        homeVC.title = shoppingListVC.title
     }
     
     func addImage() {
-        shoppingListVC.addChild(imageVC)
-        shoppingListVC.view.addSubview(imageVC.view)
+        homeVC.addChild(imageVC)
+        homeVC.view.addSubview(imageVC.view)
         imageVC.view.frame = view.frame
-        imageVC.didMove(toParent: shoppingListVC)
-        shoppingListVC.title = imageVC.title
+        imageVC.didMove(toParent: homeVC)
+        imageVC.imagesViewIsLoad()
+        homeVC.title = imageVC.title
     }
     
     func resetToHome() {
-        categoryVC.view.removeFromSuperview()
-        categoryVC.didMove(toParent: nil)
+        shoppingListVC.view.removeFromSuperview()
+        shoppingListVC.didMove(toParent: nil)
         imageVC.view.removeFromSuperview()
         imageVC.didMove(toParent: nil)
-        shoppingListVC.title = "Shopping List"
+        homeVC.title = "Home"
+        homeVC.homeViewIsLoad()
     }
 }

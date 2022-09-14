@@ -11,15 +11,15 @@ class MenuViewController: UIViewController {
     weak var delegate: MenuViewControllerDelegate?
     
     enum MenuOptions: String, CaseIterable {
-        case home = "Shopping List"
-        case categories = "Categories"
+        case home = "Home"
+        case shoppingList = "Shopping List"
         case images = "Images"
         
         var imageName: String {
             switch self {
             case .home:
-                return "square.and.pencil"
-            case .categories:
+                return "house"
+            case .shoppingList:
                 return "list.bullet.rectangle.fill"
             case .images:
                 return "photo.fill"

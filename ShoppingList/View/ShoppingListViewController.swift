@@ -11,34 +11,30 @@ import CoreData
 class ShoppingListViewController: UIViewController {
     private lazy var shoppingLists: [ShoppingLists] = []
     private let tableView: UITableView = UITableView()
-    
-    // burada delegate menu tasarımı için olan kısımdı burayı kontrol edecem
-    weak var delegate: ShoppingListViewControllerDelegate?
 
     lazy var shoppingListViewModel = ShoppingListViewModel(with: self)
-
+    
+    func crateNavigationAddButton() {
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addButtonClicked))
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         view.backgroundColor = .systemBackground
         title = "Shopping List"
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash"), style: .done, target: self, action: #selector(didTopMenuButton))
-        
-        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addButtonClicked))
-        
+        crateNavigationAddButton()
         shoppingListViewModel.fetcData()
     }
-
-    @objc func didTopMenuButton() {
-        delegate?.didTopMenuButton()
-    }
     
+    func shoppingListViewIsLoad() {
+        crateNavigationAddButton()
+    }
     
     @objc fileprivate func addButtonClicked() {
         alertWithTextField(with: "Create New Shopping", "", "Add", "Cancel", "Enter shopping name") { text in
             self.shoppingListViewModel.saveDatas(shoppingName: text)
+            NotificationCenter.default.post(name: NSNotification.Name("changeData"), object: nil)
         }
     }
 
@@ -100,6 +96,7 @@ extension ShoppingListViewController: UITableViewDataSource {
         if editingStyle == .delete {
             let selectedShoppingId = shoppingLists[indexPath.row].id
             shoppingListViewModel.removeData(id: selectedShoppingId, index: indexPath.row)
+            NotificationCenter.default.post(name: NSNotification.Name("changeData"), object: nil)
         }
     }
 }
