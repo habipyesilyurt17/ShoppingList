@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6203910C28D8258800E89264 /* ImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203910B28D8258800E89264 /* ImagesCollectionViewCell.swift */; };
+		62732E2D28D82E7F00D472CF /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62732E2C28D82E7F00D472CF /* ImagesViewModel.swift */; };
+		62732E2F28D82EC100D472CF /* ImagesViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62732E2E28D82EC100D472CF /* ImagesViewModelDelegate.swift */; };
 		628CDCA828CFBFB400C31066 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CDCA728CFBFB400C31066 /* HomeViewModel.swift */; };
 		628CDCAA28CFC39400C31066 /* HomeViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CDCA928CFC39400C31066 /* HomeViewModelDelegate.swift */; };
 		62BEC0E528CDA9E300284552 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEC0E428CDA9E300284552 /* HomeViewController.swift */; };
@@ -34,6 +37,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6203910B28D8258800E89264 /* ImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewCell.swift; sourceTree = "<group>"; };
+		62732E2C28D82E7F00D472CF /* ImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
+		62732E2E28D82EC100D472CF /* ImagesViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModelDelegate.swift; sourceTree = "<group>"; };
 		628CDCA728CFBFB400C31066 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		628CDCA928CFC39400C31066 /* HomeViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelDelegate.swift; sourceTree = "<group>"; };
 		62BEC0E428CDA9E300284552 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +122,7 @@
 				F72E2C2A28C2811900A69989 /* ImagesViewController.swift */,
 				F72E2C2C28C28B6800A69989 /* ShoppingListViewController.swift */,
 				F72E2C4628C4976000A69989 /* ShoppingListTableViewCell.swift */,
+				6203910B28D8258800E89264 /* ImagesCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -125,6 +132,7 @@
 			children = (
 				F72E2C3028C3279400A69989 /* ShoppingListViewModel.swift */,
 				628CDCA728CFBFB400C31066 /* HomeViewModel.swift */,
+				62732E2C28D82E7F00D472CF /* ImagesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -149,6 +157,7 @@
 				F72E2C3428C335B800A69989 /* ShoppingListViewModelDelegate.swift */,
 				F72E2C4228C45D8A00A69989 /* CoraDataManagerDelegate.swift */,
 				628CDCA928CFC39400C31066 /* HomeViewModelDelegate.swift */,
+				62732E2E28D82EC100D472CF /* ImagesViewModelDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -225,6 +234,7 @@
 			files = (
 				F72E2C2D28C28B6800A69989 /* ShoppingListViewController.swift in Sources */,
 				F72E2C2B28C2811900A69989 /* ImagesViewController.swift in Sources */,
+				6203910C28D8258800E89264 /* ImagesCollectionViewCell.swift in Sources */,
 				F72E2C0E28C27F2A00A69989 /* ShoppingList.xcdatamodeld in Sources */,
 				62BEC0E728CDAB2200284552 /* HomeViewControllerDelegate.swift in Sources */,
 				F72E2C0428C27F2900A69989 /* AppDelegate.swift in Sources */,
@@ -234,12 +244,14 @@
 				F72E2C2328C2804500A69989 /* MenuViewControllerDelegate.swift in Sources */,
 				F72E2C4528C471C900A69989 /* UIViewController+Ext.swift in Sources */,
 				F72E2C4728C4976000A69989 /* ShoppingListTableViewCell.swift in Sources */,
+				62732E2F28D82EC100D472CF /* ImagesViewModelDelegate.swift in Sources */,
 				F72E2C3D28C45D2300A69989 /* ItemsManager.swift in Sources */,
 				F72E2C2528C2808500A69989 /* MenuViewController.swift in Sources */,
 				F72E2C4328C45D8A00A69989 /* CoraDataManagerDelegate.swift in Sources */,
 				F72E2C1F28C2800F00A69989 /* ContainerViewController.swift in Sources */,
 				62BEC0E528CDA9E300284552 /* HomeViewController.swift in Sources */,
 				628CDCA828CFBFB400C31066 /* HomeViewModel.swift in Sources */,
+				62732E2D28D82E7F00D472CF /* ImagesViewModel.swift in Sources */,
 				F72E2C4128C45D4F00A69989 /* CategoriesManager.swift in Sources */,
 				628CDCAA28CFC39400C31066 /* HomeViewModelDelegate.swift in Sources */,
 				F72E2C3128C3279400A69989 /* ShoppingListViewModel.swift in Sources */,

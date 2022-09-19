@@ -5,4 +5,42 @@
 //  Created by habip on 4.09.2022.
 //
 
-import Foundation
+import UIKit
+import CoreData
+
+final class ImagesManager: CoraDataManagerDelegate {
+    static let shared = ImagesManager()
+    typealias T = Images
+
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    
+    func saveData(data: Images, completion: @escaping (Bool, CoreDataError) -> ()) {
+        do {
+            try self.context.save()
+        
+            completion(true, .noError)
+        } catch {
+            print("error: \(error.localizedDescription)")
+            completion(false, .savingError)
+        }
+    }
+    
+    func fetchData(completion: @escaping (Result<[Images], CoreDataError>) -> ()) {
+        let fetchRequest = NSFetchRequest<Images>(entityName: "Images")
+        fetchRequest.returnsObjectsAsFaults = false
+        do {
+            let results = try context.fetch(fetchRequest)
+            if results.count > 0 {
+                completion(.success(results))
+            }
+        } catch {
+            print("error: \(error.localizedDescription)")
+            completion(.failure(.fetchingError))
+        }
+    }
+    
+    func removeData(id: UUID, completion: @escaping (Bool, CoreDataError) -> ()) {
+        ""
+    }
+}

@@ -5,9 +5,8 @@
 //  Created by habip on 4.09.2022.
 //
 
-import Foundation
-import CoreData
 import UIKit
+import CoreData
 
 final class ShoppingListsManager: CoraDataManagerDelegate {
     static let shared = ShoppingListsManager()
