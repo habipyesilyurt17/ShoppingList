@@ -10,4 +10,5 @@ import Foundation
 protocol ImagesViewModelDelegate {
     func saveImages(images: [Images])
     func fetchImages(images: [Images])
+    func removeFromImages(images: [Images])
 }

@@ -41,6 +41,18 @@ final class ImagesManager: CoraDataManagerDelegate {
     }
     
     func removeData(id: UUID, completion: @escaping (Bool, CoreDataError) -> ()) {
-        ""
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Images")
+        let idString     = id.uuidString
+        fetchRequest.predicate = NSPredicate(format: "id = %@", idString)
+        fetchRequest.returnsObjectsAsFaults = false
+        let request = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try context.execute(request)
+            try context.save()
+            completion(true, .noError)
+        } catch {
+            print("error: \(error.localizedDescription)")
+            completion(false, .removingError)
+        }
     }
 }

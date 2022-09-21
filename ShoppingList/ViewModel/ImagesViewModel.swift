@@ -48,4 +48,16 @@ final class ImagesViewModel {
         }
     }
     
+    func removeImage(imageId: UUID?, index: Int) {
+        if let imageId = imageId {
+            ImagesManager.shared.removeData(id: imageId) { isSuccess, deleteError in
+                if isSuccess {
+                    self.images.remove(at: index)
+                    self.imagesViewModelDelegate?.removeFromImages(images: self.images)
+                } else {
+                    print("error: \(deleteError)")
+                }
+            }
+        }
+    }
 }

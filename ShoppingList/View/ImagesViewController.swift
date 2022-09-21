@@ -19,18 +19,18 @@ class ImagesViewController: UIViewController {
     func crateNavigationAddButton() {
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addImageButtonClicked))
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Images"
-        view.backgroundColor = .white
         crateNavigationAddButton()
         configureCollectionView()
         imagesViewModel.fetcData()
     }
-    
+        
     private func configureCollectionView() {
         view.addSubview(collectionView)
+        collectionView.backgroundColor = .systemBackground
         setCollectionViewDelegate()
         collectionView.register(ImagesCollectionViewCell.self, forCellWithReuseIdentifier: ImagesCollectionViewCell.identifier)
         collectionView.frame = view.bounds
@@ -74,7 +74,7 @@ class ImagesViewController: UIViewController {
         let width = NSLayoutConstraint(item: alert.view!, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 300)
         alert.view.addConstraint(height)
         alert.view.addConstraint(width)
-        let actionButton = UIAlertAction(title: "Save", style: .default) { action in            
+        let actionButton = UIAlertAction(title: "Save", style: .default) { action in
             self.imagesViewModel.saveImages(image: imageView.image)
             blurVisualEffectView.removeFromSuperview()
         }
@@ -108,6 +108,11 @@ extension ImagesViewController: ImagesViewModelDelegate {
         self.images = images
         collectionView.reloadData()
     }
+    
+    func removeFromImages(images: [Images]) {
+        self.images = images
+        collectionView.reloadData()
+    }
 }
 
 extension ImagesViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -136,27 +141,58 @@ extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagesCollectionViewCell.identifier, for: indexPath) as? ImagesCollectionViewCell
-        guard let cell = cell else{ return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagesCollectionViewCell.identifier, for: indexPath) as? ImagesCollectionViewCell else {
+            fatalError()
+        }
         cell.setUp(with: images[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let favorite = UIAction(
+                title: "Add to Favorites",
+                image: UIImage(systemName: "heart"),
+                identifier: nil,
+                state: .off) { _ in
+                    print("favorite")
+                }
+            let delete = UIAction(
+                title: "Delete",
+                image: UIImage(systemName: "trash")?.withTintColor(.red, renderingMode: .alwaysOriginal),
+                identifier: nil,
+                attributes: .destructive,
+                state: .off) { _ in
+                    let id = self.images[indexPath.row].id
+                    self.imagesViewModel.removeImage(imageId: id, index: indexPath.row)
+                }
+            return UIMenu(
+                title: "",
+                image: nil,
+                identifier: nil,
+                options: UIMenu.Options.displayInline,
+                children: [favorite, delete]
+            )
+        }
     }
 }
 
 extension ImagesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (view.frame.size.width/2)-4, height: (view.frame.size.width/2)-4)
+        return CGSize(width: (195)-4, height: (200)-4)
+        //return CGSize(width: (view.frame.size.width/2)-4, height: (view.frame.size.width/2)-4)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-         return 4
+         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 4
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 2)
     }
+        
 }

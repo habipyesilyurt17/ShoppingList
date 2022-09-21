@@ -9,11 +9,10 @@ import UIKit
 
 class ImagesCollectionViewCell: UICollectionViewCell {
     static let identifier = "ImagesCollectionViewCell"
-    private var imageView: UIImageView = UIImageView()
+    var imageView: UIImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .systemRed
         contentView.addSubview(imageView)
         contentView.clipsToBounds = true
     }
@@ -33,6 +32,11 @@ class ImagesCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageView.frame = CGRect(x: 0, y: 10, width: contentView.frame.size.width, height: contentView.frame.size.height)
+        imageView.frame = contentView.bounds
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
     }
 }
