@@ -5,8 +5,7 @@
 //  Created by habip on 3.09.2022.
 //
 
-import Foundation
-//import CoreData
+import UIKit
 
 final class ShoppingListViewModel{
     
@@ -42,6 +41,19 @@ final class ShoppingListViewModel{
                 print("error: \(error)")
             }
         }
+    }
+    
+    func updateData(id: UUID?, index: Int, updatedText: String) {
+        guard let id = id  else { return }
+        ShoppingListsManager.shared.updateData(id: id, updatedText: updatedText) { isSuccess, updateError in
+            if isSuccess {
+                self.shoppingLists[index].name = updatedText
+                self.shoppingListViewModelDelegate?.fetchShoppingLists(shoppingLists: self.shoppingLists)
+            } else {
+                print("error: \(updateError)")
+            }
+        }
+        
     }
     
     func removeData(id: UUID?, index: Int) {

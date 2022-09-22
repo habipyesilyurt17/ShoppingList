@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 
 class ShoppingListViewController: UIViewController {
     private lazy var shoppingLists: [ShoppingLists] = []
@@ -32,7 +31,7 @@ class ShoppingListViewController: UIViewController {
     }
     
     @objc fileprivate func addButtonClicked() {
-        alertWithTextField(with: "Create New Shopping", "", "Add", "Cancel", "Enter shopping name") { text in
+        alertWithTextField(with: "Create New Shopping", "", "Add", "Cancel", "Enter shopping name", nil) { text in
             self.shoppingListViewModel.saveDatas(shoppingName: text)
             NotificationCenter.default.post(name: NSNotification.Name("changeData"), object: nil)
         }
@@ -68,20 +67,20 @@ extension ShoppingListViewController {
     }
     
     private func setTableViewDelegate() {
-//        tableView.delegate = self
+        tableView.delegate = self
         tableView.dataSource = self
     }
     
     private func setTableViewConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
 }
 
-extension ShoppingListViewController: UITableViewDataSource {
+extension ShoppingListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shoppingLists.count
     }
@@ -91,12 +90,27 @@ extension ShoppingListViewController: UITableViewDataSource {
         cell.set(shopping: shoppingLists[indexPath.row])
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let selectedShoppingId = shoppingLists[indexPath.row].id
-            shoppingListViewModel.removeData(id: selectedShoppingId, index: indexPath.row)
-            NotificationCenter.default.post(name: NSNotification.Name("changeData"), object: nil)
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let editAction = UIContextualAction(style: .normal, title: nil) { action, view, complete in
+            let selectedShopping = self.shoppingLists[indexPath.row].name
+            self.alertWithTextField(with: "Update Shopping", "", "Edit", "Cancel", nil, selectedShopping) { text in
+                let updatedShopping = text
+                let shoppingId = self.shoppingLists[indexPath.row].id
+                self.shoppingListViewModel.updateData(id: shoppingId, index: indexPath.row, updatedText: updatedShopping)
+            }
+            complete(true)
         }
+        let deleteAction = UIContextualAction(style: .normal, title: nil) { action, view, complete in
+            let shoppingId = self.shoppingLists[indexPath.row].id
+            self.shoppingListViewModel.removeData(id: shoppingId, index: indexPath.row)
+            NotificationCenter.default.post(name: NSNotification.Name("changeData"), object: nil)
+            complete(true)
+        }
+        editAction.image = UIImage(systemName: "square.and.pencil")?.colored(in: .white)
+        editAction.backgroundColor = .blue
+        deleteAction.image = UIImage(systemName: "trash.fill")?.colored(in: .white)
+        deleteAction.backgroundColor = .red
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
 }

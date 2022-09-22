@@ -20,5 +20,4 @@ protocol CoraDataManagerDelegate {
     func saveData(data: T, completion: @escaping (_ isSuccess: Bool, CoreDataError)->())
     func fetchData(completion: @escaping (Result<[T], CoreDataError>)->())
     func removeData(id: UUID, completion: @escaping (_ isSuccess: Bool, CoreDataError)->())
-    // buraya update de gelebilir
 }

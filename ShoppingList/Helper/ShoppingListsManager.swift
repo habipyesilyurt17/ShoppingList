@@ -39,6 +39,33 @@ final class ShoppingListsManager: CoraDataManagerDelegate {
         }
     }
     
+    func updateData(id: UUID, updatedText: String, completion: @escaping (_ isSuccess: Bool, CoreDataError) -> ()) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ShoppingLists")
+        let idString     = id.uuidString
+        fetchRequest.predicate = NSPredicate(format: "id = %@", idString)
+        fetchRequest.returnsObjectsAsFaults = false
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        do {
+            let results = try  context.fetch(fetchRequest)
+            if results.count == 1 {
+                let objectUpdate = results[0] as! NSManagedObject
+                if id == objectUpdate.value(forKey: "id") as? UUID {
+                    objectUpdate.setValue(updatedText, forKey: "name")
+                }
+                do {
+                    try context.save()
+                    completion(true, .noError)
+                } catch {
+                    print("error: \(error.localizedDescription)")
+                    completion(false, .savingError)
+                }
+            }
+        } catch {
+            print("error: \(error.localizedDescription)")
+            completion(false, .fetchingError)
+        }
+    }
+    
     func removeData(id: UUID, completion: @escaping (_ isSuccess: Bool, CoreDataError) -> ()) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ShoppingLists")
         let idString     = id.uuidString

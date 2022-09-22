@@ -13,11 +13,17 @@ extension UIViewController {
                             _ message: String,
                             _ actionButtonTitle: String,
                             _ cancelButtonTitle: String,
-                            _ placeholder: String,
+                            _ placeholder: String?,
+                            _ currentText: String?,
                             completion: @escaping (String)->()) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addTextField { textField in
-            textField.placeholder = placeholder
+            if let placeholder = placeholder {
+                textField.placeholder = placeholder
+            }
+            if let currentText = currentText {
+                textField.text = currentText
+            }
         }
         let actionButton = UIAlertAction(title: actionButtonTitle, style: .default) { action in
             completion(alert.textFields?[0].text ?? "")
