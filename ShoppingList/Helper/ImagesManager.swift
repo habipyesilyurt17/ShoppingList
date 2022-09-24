@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-final class ImagesManager: CoraDataManagerDelegate {
+final class ImagesManager: CoreDataManagerDelegate {
     static let shared = ImagesManager()
     typealias T = Images
 
@@ -26,7 +26,7 @@ final class ImagesManager: CoraDataManagerDelegate {
         }
     }
     
-    func fetchData(completion: @escaping (Result<[Images], CoreDataError>) -> ()) {
+    func fetchData(id: UUID?, completion: @escaping (Result<[Images], CoreDataError>) -> ()) {
         let fetchRequest = NSFetchRequest<Images>(entityName: "Images")
         fetchRequest.returnsObjectsAsFaults = false
         do {

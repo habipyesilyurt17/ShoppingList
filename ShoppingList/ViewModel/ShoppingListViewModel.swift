@@ -32,7 +32,7 @@ final class ShoppingListViewModel{
     }
     
     func fetcData() {
-        ShoppingListsManager.shared.fetchData { response in
+        ShoppingListsManager.shared.fetchData(id: nil) { response in
             switch response {
             case .success(let shoppings):
                 self.shoppingLists = shoppings

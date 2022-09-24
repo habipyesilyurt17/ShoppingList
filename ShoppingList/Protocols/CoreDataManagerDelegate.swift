@@ -15,9 +15,9 @@ enum CoreDataError: String, Error {
     case noError
 }
 
-protocol CoraDataManagerDelegate {
+protocol CoreDataManagerDelegate {
     associatedtype T
     func saveData(data: T, completion: @escaping (_ isSuccess: Bool, CoreDataError)->())
-    func fetchData(completion: @escaping (Result<[T], CoreDataError>)->())
+    func fetchData(id: UUID?, completion: @escaping (Result<[T], CoreDataError>)->())
     func removeData(id: UUID, completion: @escaping (_ isSuccess: Bool, CoreDataError)->())
 }

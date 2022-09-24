@@ -37,7 +37,7 @@ final class ImagesViewModel {
     
     
     func fetcData() {
-        ImagesManager.shared.fetchData { response in
+        ImagesManager.shared.fetchData(id: nil) { response in
             switch response {
             case .success(let images):
                 self.images = images

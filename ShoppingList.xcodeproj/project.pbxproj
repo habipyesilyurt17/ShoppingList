@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		6203910C28D8258800E89264 /* ImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203910B28D8258800E89264 /* ImagesCollectionViewCell.swift */; };
+		622E170428DDDE0A002BD342 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622E170328DDDE0A002BD342 /* CategoriesViewModel.swift */; };
+		622E170628DDDE90002BD342 /* CategoriesViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622E170528DDDE90002BD342 /* CategoriesViewModelDelegate.swift */; };
+		622E170828DEC0E9002BD342 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622E170728DEC0E9002BD342 /* UIColor+Ext.swift */; };
+		622E170F28DEC9F9002BD342 /* ShoppingListViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622E170E28DEC9F9002BD342 /* ShoppingListViewControllerDelegate.swift */; };
+		622E171128DF2423002BD342 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622E171028DF2423002BD342 /* CheckboxButton.swift */; };
 		626D804F28DBB68A00898396 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626D804E28DBB68A00898396 /* UIImage+Ext.swift */; };
+		626D805128DCF1B000898396 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626D805028DCF1B000898396 /* CategoriesTableViewCell.swift */; };
 		62732E2D28D82E7F00D472CF /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62732E2C28D82E7F00D472CF /* ImagesViewModel.swift */; };
 		62732E2F28D82EC100D472CF /* ImagesViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62732E2E28D82EC100D472CF /* ImagesViewModelDelegate.swift */; };
-		628CDCA828CFBFB400C31066 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CDCA728CFBFB400C31066 /* HomeViewModel.swift */; };
-		628CDCAA28CFC39400C31066 /* HomeViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CDCA928CFC39400C31066 /* HomeViewModelDelegate.swift */; };
-		62BEC0E528CDA9E300284552 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEC0E428CDA9E300284552 /* HomeViewController.swift */; };
-		62BEC0E728CDAB2200284552 /* HomeViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEC0E628CDAB2200284552 /* HomeViewControllerDelegate.swift */; };
 		F72E2C0428C27F2900A69989 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E2C0328C27F2900A69989 /* AppDelegate.swift */; };
 		F72E2C0628C27F2900A69989 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E2C0528C27F2900A69989 /* SceneDelegate.swift */; };
 		F72E2C0E28C27F2A00A69989 /* ShoppingList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F72E2C0C28C27F2A00A69989 /* ShoppingList.xcdatamodeld */; };
@@ -32,20 +34,22 @@
 		F72E2C3D28C45D2300A69989 /* ItemsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E2C3C28C45D2300A69989 /* ItemsManager.swift */; };
 		F72E2C3F28C45D3400A69989 /* ImagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E2C3E28C45D3400A69989 /* ImagesManager.swift */; };
 		F72E2C4128C45D4F00A69989 /* CategoriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E2C4028C45D4F00A69989 /* CategoriesManager.swift */; };
-		F72E2C4328C45D8A00A69989 /* CoraDataManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E2C4228C45D8A00A69989 /* CoraDataManagerDelegate.swift */; };
+		F72E2C4328C45D8A00A69989 /* CoreDataManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E2C4228C45D8A00A69989 /* CoreDataManagerDelegate.swift */; };
 		F72E2C4528C471C900A69989 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E2C4428C471C900A69989 /* UIViewController+Ext.swift */; };
 		F72E2C4728C4976000A69989 /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E2C4628C4976000A69989 /* ShoppingListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6203910B28D8258800E89264 /* ImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewCell.swift; sourceTree = "<group>"; };
+		622E170328DDDE0A002BD342 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
+		622E170528DDDE90002BD342 /* CategoriesViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModelDelegate.swift; sourceTree = "<group>"; };
+		622E170728DEC0E9002BD342 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		622E170E28DEC9F9002BD342 /* ShoppingListViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewControllerDelegate.swift; sourceTree = "<group>"; };
+		622E171028DF2423002BD342 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 		626D804E28DBB68A00898396 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
+		626D805028DCF1B000898396 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		62732E2C28D82E7F00D472CF /* ImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
 		62732E2E28D82EC100D472CF /* ImagesViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModelDelegate.swift; sourceTree = "<group>"; };
-		628CDCA728CFBFB400C31066 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		628CDCA928CFC39400C31066 /* HomeViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelDelegate.swift; sourceTree = "<group>"; };
-		62BEC0E428CDA9E300284552 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		62BEC0E628CDAB2200284552 /* HomeViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerDelegate.swift; sourceTree = "<group>"; };
 		F72E2C0028C27F2900A69989 /* ShoppingList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72E2C0328C27F2900A69989 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F72E2C0528C27F2900A69989 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +69,7 @@
 		F72E2C3C28C45D2300A69989 /* ItemsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsManager.swift; sourceTree = "<group>"; };
 		F72E2C3E28C45D3400A69989 /* ImagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesManager.swift; sourceTree = "<group>"; };
 		F72E2C4028C45D4F00A69989 /* CategoriesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesManager.swift; sourceTree = "<group>"; };
-		F72E2C4228C45D8A00A69989 /* CoraDataManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoraDataManagerDelegate.swift; sourceTree = "<group>"; };
+		F72E2C4228C45D8A00A69989 /* CoreDataManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerDelegate.swift; sourceTree = "<group>"; };
 		F72E2C4428C471C900A69989 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		F72E2C4628C4976000A69989 /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +85,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		622E170928DEC3F6002BD342 /* categories */ = {
+			isa = PBXGroup;
+			children = (
+				F72E2C2828C280F900A69989 /* CategoriesViewController.swift */,
+				626D805028DCF1B000898396 /* CategoriesTableViewCell.swift */,
+			);
+			path = categories;
+			sourceTree = "<group>";
+		};
+		622E170A28DEC418002BD342 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				F72E2C2A28C2811900A69989 /* ImagesViewController.swift */,
+				6203910B28D8258800E89264 /* ImagesCollectionViewCell.swift */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		622E170B28DEC42B002BD342 /* shoppings */ = {
+			isa = PBXGroup;
+			children = (
+				F72E2C2C28C28B6800A69989 /* ShoppingListViewController.swift */,
+				F72E2C4628C4976000A69989 /* ShoppingListTableViewCell.swift */,
+			);
+			path = shoppings;
+			sourceTree = "<group>";
+		};
+		622E170C28DEC4A7002BD342 /* menu */ = {
+			isa = PBXGroup;
+			children = (
+				F72E2C1E28C2800F00A69989 /* ContainerViewController.swift */,
+				F72E2C2428C2808500A69989 /* MenuViewController.swift */,
+			);
+			path = menu;
+			sourceTree = "<group>";
+		};
+		622E170D28DEC4D2002BD342 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F72E2C4428C471C900A69989 /* UIViewController+Ext.swift */,
+				626D804E28DBB68A00898396 /* UIImage+Ext.swift */,
+				622E170728DEC0E9002BD342 /* UIColor+Ext.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		F72E2BF728C27F2900A69989 = {
 			isa = PBXGroup;
 			children = (
@@ -117,14 +167,11 @@
 		F72E2C1A28C27F7600A69989 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F72E2C1E28C2800F00A69989 /* ContainerViewController.swift */,
-				F72E2C2428C2808500A69989 /* MenuViewController.swift */,
-				62BEC0E428CDA9E300284552 /* HomeViewController.swift */,
-				F72E2C2828C280F900A69989 /* CategoriesViewController.swift */,
-				F72E2C2A28C2811900A69989 /* ImagesViewController.swift */,
-				F72E2C2C28C28B6800A69989 /* ShoppingListViewController.swift */,
-				F72E2C4628C4976000A69989 /* ShoppingListTableViewCell.swift */,
-				6203910B28D8258800E89264 /* ImagesCollectionViewCell.swift */,
+				622E170C28DEC4A7002BD342 /* menu */,
+				622E170928DEC3F6002BD342 /* categories */,
+				622E170A28DEC418002BD342 /* images */,
+				622E170B28DEC42B002BD342 /* shoppings */,
+				622E171028DF2423002BD342 /* CheckboxButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -133,8 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				F72E2C3028C3279400A69989 /* ShoppingListViewModel.swift */,
-				628CDCA728CFBFB400C31066 /* HomeViewModel.swift */,
 				62732E2C28D82E7F00D472CF /* ImagesViewModel.swift */,
+				622E170328DDDE0A002BD342 /* CategoriesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -146,8 +193,7 @@
 				F72E2C3C28C45D2300A69989 /* ItemsManager.swift */,
 				F72E2C3E28C45D3400A69989 /* ImagesManager.swift */,
 				F72E2C4028C45D4F00A69989 /* CategoriesManager.swift */,
-				F72E2C4428C471C900A69989 /* UIViewController+Ext.swift */,
-				626D804E28DBB68A00898396 /* UIImage+Ext.swift */,
+				622E170D28DEC4D2002BD342 /* extensions */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -155,12 +201,12 @@
 		F72E2C1D28C27FD600A69989 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				F72E2C4228C45D8A00A69989 /* CoreDataManagerDelegate.swift */,
 				F72E2C2228C2804500A69989 /* MenuViewControllerDelegate.swift */,
-				62BEC0E628CDAB2200284552 /* HomeViewControllerDelegate.swift */,
+				622E170E28DEC9F9002BD342 /* ShoppingListViewControllerDelegate.swift */,
 				F72E2C3428C335B800A69989 /* ShoppingListViewModelDelegate.swift */,
-				F72E2C4228C45D8A00A69989 /* CoraDataManagerDelegate.swift */,
-				628CDCA928CFC39400C31066 /* HomeViewModelDelegate.swift */,
 				62732E2E28D82EC100D472CF /* ImagesViewModelDelegate.swift */,
+				622E170528DDDE90002BD342 /* CategoriesViewModelDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -237,9 +283,12 @@
 			files = (
 				F72E2C2D28C28B6800A69989 /* ShoppingListViewController.swift in Sources */,
 				F72E2C2B28C2811900A69989 /* ImagesViewController.swift in Sources */,
+				622E170F28DEC9F9002BD342 /* ShoppingListViewControllerDelegate.swift in Sources */,
+				626D805128DCF1B000898396 /* CategoriesTableViewCell.swift in Sources */,
 				6203910C28D8258800E89264 /* ImagesCollectionViewCell.swift in Sources */,
 				F72E2C0E28C27F2A00A69989 /* ShoppingList.xcdatamodeld in Sources */,
-				62BEC0E728CDAB2200284552 /* HomeViewControllerDelegate.swift in Sources */,
+				622E170628DDDE90002BD342 /* CategoriesViewModelDelegate.swift in Sources */,
+				622E170428DDDE0A002BD342 /* CategoriesViewModel.swift in Sources */,
 				F72E2C0428C27F2900A69989 /* AppDelegate.swift in Sources */,
 				F72E2C2928C280F900A69989 /* CategoriesViewController.swift in Sources */,
 				F72E2C3528C335B800A69989 /* ShoppingListViewModelDelegate.swift in Sources */,
@@ -250,15 +299,14 @@
 				62732E2F28D82EC100D472CF /* ImagesViewModelDelegate.swift in Sources */,
 				F72E2C3D28C45D2300A69989 /* ItemsManager.swift in Sources */,
 				F72E2C2528C2808500A69989 /* MenuViewController.swift in Sources */,
-				F72E2C4328C45D8A00A69989 /* CoraDataManagerDelegate.swift in Sources */,
+				F72E2C4328C45D8A00A69989 /* CoreDataManagerDelegate.swift in Sources */,
 				F72E2C1F28C2800F00A69989 /* ContainerViewController.swift in Sources */,
-				62BEC0E528CDA9E300284552 /* HomeViewController.swift in Sources */,
-				628CDCA828CFBFB400C31066 /* HomeViewModel.swift in Sources */,
 				626D804F28DBB68A00898396 /* UIImage+Ext.swift in Sources */,
 				62732E2D28D82E7F00D472CF /* ImagesViewModel.swift in Sources */,
+				622E171128DF2423002BD342 /* CheckboxButton.swift in Sources */,
 				F72E2C4128C45D4F00A69989 /* CategoriesManager.swift in Sources */,
-				628CDCAA28CFC39400C31066 /* HomeViewModelDelegate.swift in Sources */,
 				F72E2C3128C3279400A69989 /* ShoppingListViewModel.swift in Sources */,
+				622E170828DEC0E9002BD342 /* UIColor+Ext.swift in Sources */,
 				F72E2C0628C27F2900A69989 /* SceneDelegate.swift in Sources */,
 				F72E2C3F28C45D3400A69989 /* ImagesManager.swift in Sources */,
 			);

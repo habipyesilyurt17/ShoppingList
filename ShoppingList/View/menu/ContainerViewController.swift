@@ -16,13 +16,9 @@ class ContainerViewController: UIViewController {
     private var menuState: MenuState = .closed
     
     let menuVC = MenuViewController()
-    let homeVC = HomeViewController()
+    lazy var shoppingListVC = ShoppingListViewController()
+    lazy var imageVC        = ImagesViewController()
     var navVC: UINavigationController?
-    
-    lazy var shoppingListVC  = ShoppingListViewController()
-    lazy var imageVC    = ImagesViewController()
-    lazy var categoryVC = CategoriesViewController()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +34,8 @@ class ContainerViewController: UIViewController {
         menuVC.didMove(toParent: self)
         
         // Home
-        homeVC.delegate = self
-        let navVC = UINavigationController(rootViewController: homeVC)
+        shoppingListVC.delegate = self
+        let navVC = UINavigationController(rootViewController: shoppingListVC)
         addChild(navVC)
         view.addSubview(navVC.view)
         navVC.didMove(toParent: self)
@@ -48,7 +44,7 @@ class ContainerViewController: UIViewController {
     
 }
 
-extension ContainerViewController: HomeViewControllerDelegate {
+extension ContainerViewController: ShoppingListViewControllerDelegate {
     func didTopMenuButton() {
         toggleMenu(completion: nil)
     }
@@ -57,7 +53,7 @@ extension ContainerViewController: HomeViewControllerDelegate {
         switch menuState {
         case .closed:
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
-                self.navVC?.view.frame.origin.x = self.homeVC.view.frame.size.width - 100
+                self.navVC?.view.frame.origin.x = self.shoppingListVC.view.frame.size.width - 100
             } completion: { [weak self] done in
                 if done {
                     self?.menuState = .opened
@@ -85,40 +81,27 @@ extension ContainerViewController: MenuViewControllerDelegate {
     func didSelect(menuItem: MenuViewController.MenuOptions) {
         toggleMenu { [weak self] in
             switch menuItem {
-            case .home:
-                self?.resetToHome()
             case .shoppingList:
-                self?.addShoppingList()
+                self?.resetToShoppingList()
              case .images:
                 self?.addImage()
             }
         }
     }
     
-    func addShoppingList() {
-        homeVC.addChild(shoppingListVC)
-        homeVC.view.addSubview(shoppingListVC.view)
-        shoppingListVC.view.frame = view.frame
-        shoppingListVC.didMove(toParent: homeVC)
-        shoppingListVC.shoppingListViewIsLoad()
-        homeVC.title = shoppingListVC.title
-    }
-    
     func addImage() {
-        homeVC.addChild(imageVC)
-        homeVC.view.addSubview(imageVC.view)
+        shoppingListVC.addChild(imageVC)
+        shoppingListVC.view.addSubview(imageVC.view)
         imageVC.view.frame = view.frame
-        imageVC.didMove(toParent: homeVC)
+        imageVC.didMove(toParent: shoppingListVC)
         imageVC.imagesViewIsLoad()
-        homeVC.title = imageVC.title
+        shoppingListVC.title = imageVC.title
     }
     
-    func resetToHome() {
-        shoppingListVC.view.removeFromSuperview()
-        shoppingListVC.didMove(toParent: nil)
+    func resetToShoppingList() {
         imageVC.view.removeFromSuperview()
         imageVC.didMove(toParent: nil)
-        homeVC.title = "Home"
-        homeVC.homeViewIsLoad()
+        shoppingListVC.title = "Shopping List"
+        shoppingListVC.shoppingListViewIsLoad()
     }
 }

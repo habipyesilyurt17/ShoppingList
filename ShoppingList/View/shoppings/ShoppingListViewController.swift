@@ -8,9 +8,9 @@
 import UIKit
 
 class ShoppingListViewController: UIViewController {
+    weak var delegate: ShoppingListViewControllerDelegate?
     private lazy var shoppingLists: [ShoppingLists] = []
     private let tableView: UITableView = UITableView()
-
     lazy var shoppingListViewModel = ShoppingListViewModel(with: self)
     
     func crateNavigationAddButton() {
@@ -19,13 +19,19 @@ class ShoppingListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor().getAppCustomColor()
         title = "Shopping List"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash"), style: .done, target: self, action: #selector(didTopMenuButton))
         crateNavigationAddButton()
+        configureTableView()
         shoppingListViewModel.fetcData()
+        
     }
     
+    @objc func didTopMenuButton() {
+        delegate?.didTopMenuButton()
+    }
+
     func shoppingListViewIsLoad() {
         crateNavigationAddButton()
     }
@@ -61,10 +67,12 @@ extension ShoppingListViewController: ShoppingListViewModelDelegate {
 extension ShoppingListViewController {
     private func configureTableView() {
         view.addSubview(tableView)
+        tableView.backgroundColor = UIColor().getAppCustomColor()
         setTableViewDelegate()
         tableView.register(ShoppingListTableViewCell.self, forCellReuseIdentifier: ShoppingListTableViewCell.Identifier.custom.rawValue)
         setTableViewConstraints()
     }
+    
     
     private func setTableViewDelegate() {
         tableView.delegate = self
@@ -90,6 +98,14 @@ extension ShoppingListViewController: UITableViewDataSource, UITableViewDelegate
         cell.set(shopping: shoppingLists[indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let categoriesVC = CategoriesViewController()
+        let choosenShoppingList = shoppingLists[indexPath.row]
+        categoriesVC.selectedShoppingList = choosenShoppingList
+        navigationController?.pushViewController(categoriesVC, animated: true)
+    }
+
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let editAction = UIContextualAction(style: .normal, title: nil) { action, view, complete in

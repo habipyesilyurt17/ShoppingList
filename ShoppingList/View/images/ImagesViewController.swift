@@ -22,6 +22,7 @@ class ImagesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor().getAppCustomColor()
         title = "Images"
         crateNavigationAddButton()
         configureCollectionView()

@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-final class ShoppingListsManager: CoraDataManagerDelegate {
+final class ShoppingListsManager: CoreDataManagerDelegate {
     static let shared = ShoppingListsManager()
     typealias T = ShoppingLists
 
@@ -25,7 +25,7 @@ final class ShoppingListsManager: CoraDataManagerDelegate {
         }
     }
     
-    func fetchData(completion: @escaping (Result<[ShoppingLists], CoreDataError>) -> ()) {
+    func fetchData(id: UUID?, completion: @escaping (Result<[ShoppingLists], CoreDataError>) -> ()) {
         let fetchRequest = NSFetchRequest<ShoppingLists>(entityName: "ShoppingLists")
         fetchRequest.returnsObjectsAsFaults = false
         do {
