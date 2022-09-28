@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="21G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Categories" representedClassName="Categories" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="done" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
@@ -25,9 +26,9 @@
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Categories" inverseName="parentList" inverseEntity="Categories"/>
     </entity>
     <elements>
-        <element name="ShoppingLists" positionX="-78.4635009765625" positionY="-271.5904235839844" width="128" height="88"/>
-        <element name="Categories" positionX="128.3226928710938" positionY="-275.4390563964844" width="128" height="118"/>
-        <element name="Items" positionX="338.6578979492188" positionY="-275.1349182128906" width="128" height="133"/>
+        <element name="Categories" positionX="128.3226928710938" positionY="-275.4390563964844" width="128" height="133"/>
         <element name="Images" positionX="158.3762817382812" positionY="-414.968994140625" width="128" height="73"/>
+        <element name="Items" positionX="338.6578979492188" positionY="-275.1349182128906" width="128" height="133"/>
+        <element name="ShoppingLists" positionX="-78.4635009765625" positionY="-271.5904235839844" width="128" height="88"/>
     </elements>
 </model>

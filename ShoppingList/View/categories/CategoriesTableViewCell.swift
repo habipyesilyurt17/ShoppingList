@@ -10,7 +10,9 @@ import UIKit
 class CategoriesTableViewCell: UITableViewCell {
     private let checkbox: CheckboxButton = CheckboxButton()
     var categoryLabel: UILabel = UILabel()
-    
+    var categoryId: UUID?
+    var categoryIndex: Int?
+    var categoriesViewModel = CategoriesViewModel(with: nil)
     enum Identifier: String {
         case custom = "CategoriesViewCell"
     }
@@ -29,6 +31,9 @@ class CategoriesTableViewCell: UITableViewCell {
     
     func set(category: Categories) {
         categoryLabel.text = category.name
+//        categoryId = category.id
+//        categoryIndex = index
+//        categoriesViewModel = viewModel
     }
     
     private func configureCheckBox() {
@@ -40,7 +45,24 @@ class CategoriesTableViewCell: UITableViewCell {
     
     @objc private func didTopCheckbox() {
         checkbox.toggle()
-        // burada viewmodele
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: categoryLabel.text!)
+        if checkbox.isChecked {
+            checkedText(attributeString: attributeString)
+            //categoriesViewModel.updateData(id: categoryId, index: categoryIndex!, updatedText: categoryLabel.text, isDone: true)
+        } else {
+            uncheckedText(attributeString: attributeString)
+            //categoriesViewModel.updateData(id: categoryId, index: categoryIndex!, updatedText: categoryLabel.text, isDone: false)
+        }
+    }
+    
+    private func checkedText(attributeString: NSMutableAttributedString) {
+        attributeString.addAttribute(.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        attributeString.addAttribute(.strikethroughColor, value: UIColor.systemGreen, range: NSMakeRange(0, attributeString.length))
+        attributeString.addAttribute(.foregroundColor, value: UIColor.systemGray, range: NSMakeRange(0, attributeString.length))
+    }
+    
+    private func uncheckedText(attributeString: NSMutableAttributedString) {
+        attributeString.addAttribute(.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
     }
     
     private func configureCategoryLabel() {
@@ -52,11 +74,6 @@ class CategoriesTableViewCell: UITableViewCell {
     }
 
     private func setCategoryLabelConstraints() {
-//        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
-//        categoryLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-//        categoryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-//        categoryLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
-//
         categoryLabel.translatesAutoresizingMaskIntoConstraints = false
         categoryLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         categoryLabel.leadingAnchor.constraint(equalTo: checkbox.trailingAnchor, constant: 10).isActive = true

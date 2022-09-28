@@ -120,7 +120,6 @@ extension ShoppingListViewController: UITableViewDataSource, UITableViewDelegate
         let deleteAction = UIContextualAction(style: .normal, title: nil) { action, view, complete in
             let shoppingId = self.shoppingLists[indexPath.row].id
             self.shoppingListViewModel.removeData(id: shoppingId, index: indexPath.row)
-            NotificationCenter.default.post(name: NSNotification.Name("changeData"), object: nil)
             complete(true)
         }
         editAction.image = UIImage(systemName: "square.and.pencil")?.colored(in: .white)

@@ -31,7 +31,7 @@ class ImagesViewController: UIViewController {
         
     private func configureCollectionView() {
         view.addSubview(collectionView)
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = UIColor().getAppCustomColor()
         setCollectionViewDelegate()
         collectionView.register(ImagesCollectionViewCell.self, forCellWithReuseIdentifier: ImagesCollectionViewCell.identifier)
         collectionView.frame = view.bounds
@@ -119,7 +119,7 @@ extension ImagesViewController: ImagesViewModelDelegate {
 extension ImagesViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         selectImageView.contentMode = .scaleAspectFit
-        selectImageView.image = info[.originalImage] as? UIImage
+        selectImageView.image = info[.originalImage] as? UIImage        
         let scaledImage: UIImage = imageValue(with: selectImageView.image!, scaledTo: CGSize(width: selectImageView.frame.width-70, height: selectImageView.frame.height-20))
         selectImageView.image = scaledImage
         self.dismiss(animated: true, completion: nil)

@@ -22,6 +22,7 @@ final class CategoriesViewModel{
         newCategory.id   = UUID()
         newCategory.done = false
         newCategory.name = categoryName
+        newCategory.createdAt = Date()
         if let shoppingList = shoppingList {
             newCategory.parentList = shoppingList
         }
@@ -35,7 +36,8 @@ final class CategoriesViewModel{
         }
     }
     
-    func fetcData(shoppingId: UUID?) {
+    
+    func fetchData(shoppingId: UUID?) {
         CategoriesManager.shared.fetchData(id: shoppingId) { response in
             switch response {
             case .success(let categories):
@@ -43,6 +45,31 @@ final class CategoriesViewModel{
                 self.categoriesViewModelDelegate?.fetchCategories(categories: self.categories)
             case .failure(let error):
                 print("error: \(error)")
+            }
+        }
+    }
+    
+    func updateData(id: UUID?, index: Int, updatedText: String?) {
+        guard let id = id  else { return }
+        CategoriesManager.shared.updateData(id: id, updatedText: updatedText) { isSuccess, updateError in
+            if isSuccess {
+                self.categories[index].name = updatedText
+                self.categoriesViewModelDelegate?.fetchCategories(categories: self.categories)
+            } else {
+                print("error: \(updateError)")
+            }
+        }
+    }
+    
+    func removeData(id: UUID?, index: Int) {
+        if let id = id {
+            CategoriesManager.shared.removeData(id: id) { isSuccess, deleteError in
+                if isSuccess {
+                    self.categories.remove(at: index)
+                    self.categoriesViewModelDelegate?.removeFromCategories(categories: self.categories)
+                } else {
+                    print("error: \(deleteError)")
+                }
             }
         }
     }

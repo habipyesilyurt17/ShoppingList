@@ -30,7 +30,7 @@ class CategoriesViewController: UIViewController {
     }
     
     func loadCategories() {
-        categoriesViewModel.fetcData(shoppingId: selectedShoppingList?.id)
+        categoriesViewModel.fetchData(shoppingId: selectedShoppingList?.id)
     }
     
     @objc fileprivate func addButtonPressed() {
@@ -38,11 +38,16 @@ class CategoriesViewController: UIViewController {
             self.categoriesViewModel.saveData(categoryName: text, shoppingList: self.selectedShoppingList)
         }
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("\(self.categories)")
+    }
 }
 
 extension CategoriesViewController {
     private func configureTableView() {
         view.addSubview(tableView)
+        tableView.rowHeight = 45
         tableView.backgroundColor = UIColor().getAppCustomColor()
         setTableViewDelegate()
     }
@@ -90,5 +95,32 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = cell else { return UITableViewCell() }
         cell.set(category: categories[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // go to items vc
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let editAction = UIContextualAction(style: .normal, title: nil) { action, view, complete in
+            let selectedCategory = self.categories[indexPath.row].name
+            self.alertWithTextField(with: "Update Category", "", "Edit", "Cancel", nil, selectedCategory) { text in
+                let updatedCategory = text
+                let categoryId = self.categories[indexPath.row].id
+                self.categoriesViewModel.updateData(id: categoryId, index: indexPath.row, updatedText: updatedCategory)
+            }
+            complete(true)
+        }
+        let deleteAction = UIContextualAction(style: .normal, title: nil) { action, view, complete in
+            let shoppingId = self.categories[indexPath.row].id
+            self.categoriesViewModel.removeData(id: shoppingId, index: indexPath.row)
+            complete(true)
+        }
+        editAction.image = UIImage(systemName: "square.and.pencil")?.colored(in: .white)
+        editAction.backgroundColor = .blue
+        deleteAction.image = UIImage(systemName: "trash.fill")?.colored(in: .white)
+        deleteAction.backgroundColor = .red
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+
     }
 }

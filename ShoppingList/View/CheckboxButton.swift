@@ -7,19 +7,13 @@
 
 import UIKit
 
-// druuma göre bunu silebilirim
-enum CheckBoxState {
-    case checked
-    case unchecked
-}
-
 class CheckboxButton: UIView {
     var isChecked: Bool = false
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.isHidden = true
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .systemBlue
+        imageView.tintColor = .systemGreen
         imageView.image = UIImage(systemName: "checkmark")
         return imageView
     }()

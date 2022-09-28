@@ -14,6 +14,7 @@ class ImagesCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(imageView)
+        //imageView.backgroundColor = UIColor().getAppCustomColor()
         contentView.clipsToBounds = true
     }
     
